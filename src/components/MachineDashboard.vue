@@ -4,7 +4,7 @@
       <q-btn-dropdown auto-close rounded color="primary" label="Coltello" split>
         <config-page></config-page>
       </q-btn-dropdown>
-      <q-btn-dropdown auto-close rounded color="primary" label="TwoTemperatura" split>
+      <q-btn-dropdown auto-close rounded color="primary" label="Temperatura" split>
         <config-page></config-page>
       </q-btn-dropdown>
       <q-btn-dropdown auto-close rounded color="primary" label="Pressione" split>

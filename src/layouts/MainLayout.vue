@@ -1,23 +1,25 @@
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
-      <q-toolbar>
-        <q-btn icon="menu" flat dense round aria-label="Menu" @click="toggleLeftDrawer">
-        </q-btn>
+      <div class="q-pa-md">
+        <q-toolbar class="bg-primary text-white">
+          <q-btn icon="menu" flat dense round aria-label="Menu" @click="toggleLeftDrawer">
+          </q-btn>
 
-        <q-toolbar-title>
-          <img src="mini-logo.png" style="height: 50px; padding: 8px;">
-          <img src="logo.png" style="height: 50px; padding: 8px;">
-        </q-toolbar-title>
+          <q-toolbar-title class="row">
+            <img src="mini-logo.png" style="height: 30px; padding-right: 20px;">
+            <img src="logo.png" style="height: 30px;">
+          </q-toolbar-title>
 
-        <div>v{{ $q.version }}</div>
-      </q-toolbar>
+          <div>by Manitronica SRL</div>
+        </q-toolbar>
+      </div>
     </q-header>
 
     <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
       <q-list>
         <q-item-label header>
-          Essential Links
+          Menù
         </q-item-label>
 
         <EssentialLink v-for="link in essentialLinks" :key="link.title" v-bind="link" />
@@ -36,46 +38,28 @@ import EssentialLink, { EssentialLinkProps } from 'components/EssentialLink.vue'
 
 const essentialLinks: EssentialLinkProps[] = [
   {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev'
-  },
-  {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
+    title: 'Sorgenti',
+    caption: 'prototipo 1',
     icon: 'code',
-    link: 'https://github.com/quasarframework'
+    link: 'https://github.com/gsaielli/prototype1'
   },
   {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev'
+    title: 'Docs',
+    caption: 'documentazione',
+    icon: 'school',
+    link: '#'
   },
   {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
+    title: 'Admin',
+    caption: 'modalità admin',
     icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
+    link: '#'
   },
   {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
+    title: 'Roboqbo',
+    caption: 'sito internet',
     icon: 'public',
-    link: 'https://facebook.quasar.dev'
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
+    link: 'https://www.roboqbo.it/en/welcome/'
   }
 ]
 
