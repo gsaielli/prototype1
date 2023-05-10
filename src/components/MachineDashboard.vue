@@ -1,19 +1,39 @@
 <template>
   <div class="q-pa-md">
-    <q-btn-group rounded>
-      <q-btn-dropdown auto-close rounded color="primary" label="Coltello" split>
+    <div class="row q-gutter-lg justify-center">
+      <q-btn-dropdown class="" auto-close color="primary" label="Coltello" split>
+        <template v-slot:label>
+          <div class="row items-center no-wrap">
+            <q-icon left name="cached" />
+          </div>
+        </template>
         <config-page></config-page>
       </q-btn-dropdown>
-      <q-btn-dropdown auto-close rounded color="primary" label="Temperatura" split>
+      <q-btn-dropdown auto-close color="primary" label="Temperatura" split>
+        <template v-slot:label>
+          <div class="row items-center no-wrap">
+            <q-icon left name="thermostat" />
+          </div>
+        </template>
         <config-page></config-page>
       </q-btn-dropdown>
-      <q-btn-dropdown auto-close rounded color="primary" label="Pressione" split>
+      <q-btn-dropdown auto-close color="primary" label="Pressione" split>
+        <template v-slot:label>
+          <div class="row items-center no-wrap">
+            <q-icon left name="compress" />
+          </div>
+        </template>
         <config-page></config-page>
       </q-btn-dropdown>
-      <q-btn-dropdown auto-close rounded color="primary" label="Spatola" split>
+      <q-btn-dropdown auto-close color="primary" label="Spatola" split>
+        <template v-slot:label>
+          <div class="row items-center no-wrap">
+            <q-icon left name="play_for_work" />
+          </div>
+        </template>
         <config-page></config-page>
       </q-btn-dropdown>
-    </q-btn-group>
+    </div>
   </div>
 </template>
 
