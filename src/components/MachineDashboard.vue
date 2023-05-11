@@ -1,6 +1,6 @@
 <template>
-  <div class="q-pa-md">
-    <div class="row q-gutter-lg justify-center">
+  <div class="flex flex-center column nowrap items-center">
+    <div class="q-pa-md q-gutter-md row justify-center">
       <q-btn-dropdown color="primary" dropdown-icon="cached">
         <template v-slot:label>
           <button-display title="Utensile" um="rpm" value='200'></button-display>
@@ -26,38 +26,36 @@
         <config-page></config-page>
       </q-btn-dropdown>
     </div>
-  </div>
 
-  <div class="q-pa-md row items-start q-gutter-md">
-    <q-card>
-      <q-card-section class="bg-red text-white text-center">
-        <div class="text-h4">{{ actual }}/{{ max }}</div>
-        <div class="text-subtitle2">fase</div>
-      </q-card-section>
+    <div class="q-pa-md q-gutter-md">
+      <q-card>
+        <q-card-section class="bg-red text-white text-center">
+          <div class="text-h4">{{ actual }}/{{ max }}</div>
+          <div class="text-subtitle2">fase</div>
+        </q-card-section>
 
-      <q-card-actions>
-        <q-btn color="warning" icon="arrow_left" size="30px" @click="phaseRev" />
-        <q-btn color="warning" icon="arrow_right" size="30px" @click="phaseAdv" />
-      </q-card-actions>
-    </q-card>
-  </div>
-
-  <div class="q-pa-md">
-    <div class="row q-gutter-lg justify-center">
+        <q-card-actions>
+          <q-btn color="warning" icon="arrow_left" size="30px" @click="phaseRev" />
+          <q-btn color="warning" icon="arrow_right" size="30px" @click="phaseAdv" />
+        </q-card-actions>
+      </q-card>
     </div>
-    <div class="row q-gutter-lg justify-center">
-      <div class="row q-gutter-md justify-center" style="padding-top: 100px;">
-        <q-btn-toggle push rounded glossy toggle-color="purple" :options="[
-            { value: 'play', slot: 'one' },
-            { value: 'stop', slot: 'two' },
-          ]">
-          <template v-slot:one>
-            <q-icon name="play_arrow" size="100px" />
-          </template>
-          <template v-slot:two>
-            <q-icon name="stop" size="100px" />
-          </template>
-        </q-btn-toggle>
+
+    <div class="q-pa-md q-gutter-md">
+      <div class="q-gutter-lg">
+        <div class="q-gutter-md">
+          <q-btn-toggle push rounded glossy toggle-color="purple" :options="[
+              { value: 'play', slot: 'one' },
+              { value: 'stop', slot: 'two' },
+            ]">
+            <template v-slot:one>
+              <q-icon name="play_arrow" size="100px" />
+            </template>
+            <template v-slot:two>
+              <q-icon name="stop" size="100px" />
+            </template>
+          </q-btn-toggle>
+        </div>
       </div>
     </div>
   </div>
