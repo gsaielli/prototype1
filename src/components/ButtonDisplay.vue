@@ -1,5 +1,5 @@
 <template>
-  <div class="row items-center no-wrap" style="width: 120px;">
+  <div class="row items-center no-wrap" style="width: 140px;">
     <div class="text-center">
       {{ title }}<br><span class="lcd">{{ value }}</span><br><span class="um">{{ um }}</span>
     </div>

@@ -11,7 +11,7 @@
         <template v-slot:label>
           <button-display title="Temperatura" um="°C" value='82.5'></button-display>
         </template>
-        <config-page></config-page>
+        <config-thermo></config-thermo>
       </q-btn-dropdown>
       <q-btn-dropdown color="primary" dropdown-icon="compress">
         <template v-slot:label>
@@ -29,15 +29,15 @@
   </div>
 
   <div class="q-pa-md row items-start q-gutter-md">
-    <q-card class="my-card">
+    <q-card>
       <q-card-section class="bg-red text-white text-center">
-        <div class="text-h4">1/1</div>
+        <div class="text-h4">{{ actual }}/{{ max }}</div>
         <div class="text-subtitle2">fase</div>
       </q-card-section>
 
       <q-card-actions>
-        <q-btn color="warning" icon="arrow_left" size="30px" />
-        <q-btn color="warning" icon="arrow_right" size="30px" />
+        <q-btn color="warning" icon="arrow_left" size="30px" @click="phaseRev" />
+        <q-btn color="warning" icon="arrow_right" size="30px" @click="phaseAdv" />
       </q-card-actions>
     </q-card>
   </div>
@@ -48,9 +48,9 @@
     <div class="row q-gutter-lg justify-center">
       <div class="row q-gutter-md justify-center" style="padding-top: 100px;">
         <q-btn-toggle push rounded glossy toggle-color="purple" :options="[
-          { value: 'play', slot: 'one' },
-          { value: 'stop', slot: 'two' },
-        ]">
+            { value: 'play', slot: 'one' },
+            { value: 'stop', slot: 'two' },
+          ]">
           <template v-slot:one>
             <q-icon name="play_arrow" size="100px" />
           </template>
@@ -66,6 +66,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { Todo, Meta } from './models'
+import ConfigThermo from './ConfigThermo.vue'
 import ConfigPage from './ConfigPage.vue'
 import ButtonDisplay from './ButtonDisplay.vue'
 
@@ -78,5 +79,17 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   todos: () => []
 })
+
+const actual = ref(0)
+const max = ref(0)
+
+function phaseAdv () {
+  actual.value++
+  if (actual.value > max.value) { max.value = actual.value }
+}
+
+function phaseRev () {
+  if (actual.value > 0) { actual.value-- }
+}
 
 </script>
