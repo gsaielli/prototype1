@@ -1,7 +1,56 @@
 <template>
-  <q-list padding style="width: 75vw">
+  <q-list style="width: 75vw">
 
-    <q-tab-panel>
+    <q-tab-panel name="x">
+
+      <q-item class="q-item">
+        <q-item-section avatar>
+          <q-avatar :icon="tool" color="primary" text-color="white">
+            <q-tooltip>
+              Seleziona Attrezzo per la lavorazione
+            </q-tooltip>
+          </q-avatar>
+        </q-item-section>
+        <q-item-section>
+          <div class="q-pa-md">
+            <q-btn-dropdown color="primary" label="Seleziona Attrezzo">
+              <q-list>
+
+                <q-item clickable v-close-popup :active="tool === 'build'" active-class="my-menu-link"
+                  @click="tool = 'build'">
+                  <q-item-section avatar>
+                    <q-icon class="icon" name="build" size="32px" />
+                  </q-item-section>
+                  <q-item-section>
+                    <q-item-label>Build</q-item-label>
+                  </q-item-section>
+                </q-item>
+
+                <q-item clickable v-close-popup :active="tool === 'plumbing'" active-class="my-menu-link"
+                  @click="tool = 'plumbing'">
+                  <q-item-section avatar>
+                    <q-icon class="icon" name="plumbing" size="32px" />
+                  </q-item-section>
+                  <q-item-section>
+                    <q-item-label>Plumbing</q-item-label>
+                  </q-item-section>
+                </q-item>
+
+                <q-item clickable v-close-popup :active="tool === 'handyman'" active-class="my-menu-link"
+                  @click="tool = 'handyman'">
+                  <q-item-section avatar>
+                    <q-icon class="icon" name="handyman" size="32px" />
+                  </q-item-section>
+                  <q-item-section>
+                    <q-item-label>Handyman</q-item-label>
+                  </q-item-section>
+                </q-item>
+
+              </q-list>
+            </q-btn-dropdown>
+          </div>
+        </q-item-section>
+      </q-item>
 
       <q-item class="q-item">
         <q-item-section avatar style="padding">
@@ -100,11 +149,22 @@ const rpm2 = ref(0)
 const tOn = ref(0)
 const tOff = ref(0)
 const tM = ref(0)
+const tool = ref('build')
 </script>
 
 <style scoped>
 .q-item {
   margin-top: 10px;
   padding-left: 0px;
+}
+
+.icon {
+  color: gray;
+  padding-left: 10px;
+}
+
+.my-menu-link {
+  color: white;
+  background: #1976D2;
 }
 </style>
