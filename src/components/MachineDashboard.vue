@@ -35,8 +35,9 @@
         </q-card-section>
 
         <q-card-actions>
-          <q-btn color="warning" icon="arrow_left" size="30px" @click="phaseRev" />
-          <q-btn color="warning" icon="arrow_right" size="30px" @click="phaseAdv" />
+          <q-btn color="primary" icon="arrow_left" size="30px" @click="phaseRev" />
+          <q-btn color="warning" icon="delete" size="30px" @click="phaseDel" />
+          <q-btn color="primary" icon="arrow_right" size="30px" @click="phaseAdv" />
         </q-card-actions>
       </q-card>
     </div>
@@ -89,6 +90,11 @@ function phaseAdv () {
 
 function phaseRev () {
   if (actual.value > 0) { actual.value-- }
+}
+
+function phaseDel () {
+  if (max.value > 0) { max.value-- }
+  if (actual.value > max.value) { actual.value = max.value }
 }
 
 </script>
