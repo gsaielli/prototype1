@@ -22,7 +22,7 @@
                     <q-icon class="icon" name="build" size="32px" />
                   </q-item-section>
                   <q-item-section>
-                    <q-item-label>Build</q-item-label>
+                    <q-item-label>Nome attrezzo 1</q-item-label>
                   </q-item-section>
                 </q-item>
 
@@ -32,7 +32,7 @@
                     <q-icon class="icon" name="plumbing" size="32px" />
                   </q-item-section>
                   <q-item-section>
-                    <q-item-label>Plumbing</q-item-label>
+                    <q-item-label>Nome attrezzo 2</q-item-label>
                   </q-item-section>
                 </q-item>
 
@@ -42,7 +42,7 @@
                     <q-icon class="icon" name="handyman" size="32px" />
                   </q-item-section>
                   <q-item-section>
-                    <q-item-label>Handyman</q-item-label>
+                    <q-item-label>Nome attrezzo 3</q-item-label>
                   </q-item-section>
                 </q-item>
 

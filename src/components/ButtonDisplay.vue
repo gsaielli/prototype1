@@ -25,7 +25,7 @@ const props = withDefaults(defineProps<Props>(), {
 <style>
 @font-face {
   font-family: 'liquidcr';
-  src: url(./liquidcr.woff);
+  src: url('./liquidcr.woff');
 }
 
 .lcd {
