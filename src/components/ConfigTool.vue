@@ -1,5 +1,5 @@
 <template>
-  <q-list style="width: 75vw">
+  <q-list style="width: 400px">
 
     <q-tab-panel name="x">
 

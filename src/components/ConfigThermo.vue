@@ -1,5 +1,5 @@
 <template>
-  <q-list padding style="width: 75vw">
+  <q-list padding style="width: 400px">
 
     <q-tabs v-model="tab" dense class="text-grey" active-color="primary" indicator-color="primary" align="justify"
       narrow-indicator>
