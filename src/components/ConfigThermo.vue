@@ -20,11 +20,11 @@
             </q-avatar>
           </q-item-section>
           <q-item-section>
-            <q-slider class="" color="deep-orange" label-always :label-value="valueH + '°C'" markers v-model="valueH"
+            <q-slider color="red" label-always :label-value="valueH + '°C'" markers v-model="valueH"
               :marker-labels="[0, 25, 50, 75, 100, 125]" :min="0" :max="125">
               <template v-slot:marker-label-group="scope">
                 <div v-for="marker in scope.markerList" :key="marker.index"
-                  :class="[`text-deep-orange-${2 + Math.ceil(marker.value / 2)}`, marker.classes]" :style="marker.style"
+                  :class="[`text-red-${2 + Math.ceil(marker.value / 2)}`, marker.classes]" :style="marker.style"
                   @click="model = marker.value">{{ marker.value }}°</div>
               </template>
             </q-slider>
@@ -40,11 +40,11 @@
             </q-avatar>
           </q-item-section>
           <q-item-section>
-            <q-slider class="" color="deep-orange" label-always :label-value="valueV + '°C'" markers v-model="valueV"
+            <q-slider color="red" label-always :label-value="valueV + '°C'" markers v-model="valueV"
               :marker-labels="[0, 25, 50, 75, 100, 125]" :min="0" :max="125">
               <template v-slot:marker-label-group="scope">
                 <div v-for="marker in scope.markerList" :key="marker.index"
-                  :class="[`text-deep-orange-${2 + Math.ceil(marker.value / 2)}`, marker.classes]" :style="marker.style"
+                  :class="[`text-red-${2 + Math.ceil(marker.value / 2)}`, marker.classes]" :style="marker.style"
                   @click="model = marker.value">{{ marker.value }}°</div>
               </template>
             </q-slider>
@@ -61,7 +61,7 @@
           </q-item-section>
           <q-item-section>
             <div class="row">
-              <q-input class="col " v-model.number="tOnH" label="ON (s)" maxlength="3" :dense="dense" type="number">
+              <q-input class="col" v-model.number="tOnH" label="ON (s)" maxlength="3" :dense="dense" type="number">
                 <template v-slot:append>
                   <q-icon v-if="tOnH !== 0" name="close" @click="tOnH = 0" class="cursor-pointer" />
                   <q-icon name="schedule" />
@@ -105,7 +105,7 @@
           <q-item-section avatar style="padding">
             <q-avatar icon="thermostat" color="blue" text-color="white">
               <q-tooltip>
-                Set point Caldo
+                Set point Freddo
               </q-tooltip>
             </q-avatar>
           </q-item-section>
@@ -130,7 +130,7 @@
             </q-avatar>
           </q-item-section>
           <q-item-section>
-            <q-slider class="" color="blue" label-always :label-value="valueG + '°C'" markers v-model="valueG"
+            <q-slider color="blue" label-always :label-value="valueG + '°C'" markers v-model="valueG"
               :marker-labels="[0, 25, 50, 75, 100, 125]" :min="0" :max="125">
               <template v-slot:marker-label-group="scope">
                 <div v-for="marker in scope.markerList" :key="marker.index"

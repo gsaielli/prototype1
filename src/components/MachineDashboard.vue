@@ -5,7 +5,7 @@
         <template v-slot:label>
           <button-display title="Utensile" um="rpm" value='200'></button-display>
         </template>
-        <config-page></config-page>
+        <config-tool />
       </q-btn-dropdown>
       <q-btn-dropdown color="primary" dropdown-icon="thermostat">
         <template v-slot:label>
@@ -65,6 +65,7 @@
 import { computed, ref } from 'vue'
 import { Todo, Meta } from './models'
 import ConfigThermo from './ConfigThermo.vue'
+import ConfigTool from './ConfigTool.vue'
 import ConfigPage from './ConfigPage.vue'
 import ButtonDisplay from './ButtonDisplay.vue'
 
