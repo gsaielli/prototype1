@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
-import sourceData from 'assets/data.json'
+import { ref, computed } from 'vue'
+import sourceData from 'assets/model.json'
 import { useStorage } from '@vueuse/core'
 
 export const useDataStore = defineStore('data', () => {
@@ -17,6 +17,19 @@ export const useDataStore = defineStore('data', () => {
   //     immediate: true
   //   }
   // )
+  const phase = ref(0)
 
-  return { data }
+  const valid1 = computed(() => {
+    // return ((data.Set_Rpm1_Utensile > 0) && (data.Tempo_Rpm_Utensile > 0))
+    //   || (data.Set_Caldo > 0)
+    //   || (data.Set_Freddo > 0)
+    //   || (data.Set_Vuoto !== 0)
+    //   || (data.Set_Pressione_In > 0)
+    //   || (data.Set_Pressione_Out > 0)
+    const x = data.value[phase.value]
+    return ((x.Set_Rpm1_Utensile > 0 && x.On_Rpm_Utensile > 0) || (x.Set_Rpm2_Utensile > 0 && x.Off_Rpm_Utensile > 0)) &&
+      x.Tempo_Rpm_Utensile > 0
+  })
+
+  return { data, phase, valid1 }
 })

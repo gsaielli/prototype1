@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-center column nowrap items-center">
     <div class="q-pa-md q-gutter-md row justify-center">
-      <q-btn-dropdown color="primary" dropdown-icon="cached">
+      <q-btn-dropdown color="primary" dropdown-icon="settings">
         <template v-slot:label>
           <button-display title="Utensile" um="rpm" value='200'></button-display>
         </template>
@@ -30,7 +30,7 @@
     <div class="q-pa-md q-gutter-md">
       <q-card>
         <q-card-section class="bg-red text-white text-center">
-          <div class="text-h4">{{ actual }}/{{ max }}</div>
+          <div class="text-h4">{{ store.phase + 1 }}/{{ store.data.length }}</div>
           <div class="text-subtitle2">fase</div>
         </q-card-section>
 
@@ -63,38 +63,52 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
-import { Todo, Meta } from './models'
+// import { Todo, Meta } from './models'
 import ConfigThermo from './ConfigThermo.vue'
 import ConfigTool from './ConfigTool.vue'
 import ConfigPage from './ConfigPage.vue'
 import ButtonDisplay from './ButtonDisplay.vue'
+import { useDataStore } from '../stores/data-store'
+const store = useDataStore()
 
-interface Props {
-  title: string
-  todos?: Todo[]
-  meta: Meta
-  active: boolean
-}
-const props = withDefaults(defineProps<Props>(), {
-  todos: () => []
-})
-
-const actual = ref(0)
-const max = ref(0)
+// interface Props {
+//   title: string
+//   todos?: Todo[]
+//   meta: Meta
+//   active: boolean
+// }
+// const props = withDefaults(defineProps<Props>(), {
+//   todos: () => []
+// })
 
 function phaseAdv () {
-  actual.value++
-  if (actual.value > max.value) { max.value = actual.value }
+  if (store.valid1) {
+    store.phase++
+    if (store.phase >= store.data.length) {
+      store.data.push({ tool: 'build' })
+    }
+  } else {
+    alert('Errore nell impostazione della fase')
+  }
 }
 
 function phaseRev () {
-  if (actual.value > 0) { actual.value-- }
+  if (store.phase > 0 && store.valid1) {
+    store.phase--
+  } else {
+    alert('Errore nell impostazione della fase')
+  }
 }
 
 function phaseDel () {
-  if (max.value > 0) { max.value-- }
-  if (actual.value > max.value) { actual.value = max.value }
+  // ce ne deve rimanere almeno una
+  if (store.data.length > 1) {
+    store.data.splice(store.phase, 1)
+  }
+  // se cancelli l'ultima fase (es.5) e il puntatore è alla fine (es. 5), dopo la cancellazione il puntatore deve tornare indietro
+  if (store.phase >= store.data.length) {
+    store.phase--
+  }
 }
 
 </script>

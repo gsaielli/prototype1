@@ -5,7 +5,7 @@
 
       <q-item class="q-item">
         <q-item-section avatar>
-          <q-avatar :icon="store.data.tool" color="primary" text-color="white">
+          <q-avatar :icon="store.data[store.phase].tool" color="primary" text-color="white">
             <q-tooltip>
               Seleziona Attrezzo per la lavorazione
             </q-tooltip>
@@ -16,8 +16,8 @@
             <q-btn-dropdown color="primary" label="SELECT">
               <q-list>
 
-                <q-item clickable v-close-popup :active="store.data.tool === 'build'" active-class="my-menu-link"
-                  @click="store.data.tool = 'build'">
+                <q-item clickable v-close-popup :active="store.data[store.phase].tool === 'build'"
+                  active-class="my-menu-link" @click="store.data[store.phase].tool = 'build'">
                   <q-item-section avatar>
                     <q-icon class="icon" name="build" size="32px" />
                   </q-item-section>
@@ -26,8 +26,8 @@
                   </q-item-section>
                 </q-item>
 
-                <q-item clickable v-close-popup :active="store.data.tool === 'plumbing'" active-class="my-menu-link"
-                  @click="store.data.tool = 'plumbing'">
+                <q-item clickable v-close-popup :active="store.data[store.phase].tool === 'plumbing'"
+                  active-class="my-menu-link" @click="store.data[store.phase].tool = 'plumbing'">
                   <q-item-section avatar>
                     <q-icon class="icon" name="plumbing" size="32px" />
                   </q-item-section>
@@ -36,8 +36,8 @@
                   </q-item-section>
                 </q-item>
 
-                <q-item clickable v-close-popup :active="store.data.tool === 'handyman'" active-class="my-menu-link"
-                  @click="store.data.tool = 'handyman'">
+                <q-item clickable v-close-popup :active="store.data[store.phase].tool === 'handyman'"
+                  active-class="my-menu-link" @click="store.data[store.phase].tool = 'handyman'">
                   <q-item-section avatar>
                     <q-icon class="icon" name="handyman" size="32px" />
                   </q-item-section>
@@ -61,8 +61,9 @@
           </q-avatar>
         </q-item-section>
         <q-item-section>
-          <q-slider color="primary" label-always :label-value="store.data.toolRpm1 + ' rpm'" markers
-            v-model="store.data.toolRpm1" :marker-labels="[0, 500, 1000, 1500, 2000, 2500, 3000]" :min="0" :max="3000">
+          <q-slider color="primary" label-always :label-value="store.data[store.phase].Set_Rpm1_Utensile + ' rpm'" markers
+            v-model="store.data[store.phase].Set_Rpm1_Utensile" :marker-labels="[0, 500, 1000, 1500, 2000, 2500, 3000]"
+            :min="0" :max="3000">
             <template v-slot:marker-label-group="scope">
               <div v-for="marker in scope.markerList" :key="marker.index"
                 :class="[`text-primary-${2 + Math.ceil(marker.value / 2)}`, marker.classes]" :style="marker.style"
@@ -81,8 +82,9 @@
           </q-avatar>
         </q-item-section>
         <q-item-section>
-          <q-slider color="primary" label-always :label-value="store.data.toolRpm2 + ' rpm'" markers
-            v-model="store.data.toolRpm2" :marker-labels="[0, 500, 1000, 1500, 2000, 2500, 3000]" :min="0" :max="3000">
+          <q-slider color="primary" label-always :label-value="store.data[store.phase].Set_Rpm2_Utensile + ' rpm'" markers
+            v-model="store.data[store.phase].Set_Rpm2_Utensile" :marker-labels="[0, 500, 1000, 1500, 2000, 2500, 3000]"
+            :min="0" :max="3000">
             <template v-slot:marker-label-group="scope">
               <div v-for="marker in scope.markerList" :key="marker.index"
                 :class="[`text-primary-${2 + Math.ceil(marker.value / 2)}`, marker.classes]" :style="marker.style"
@@ -102,17 +104,19 @@
         </q-item-section>
         <q-item-section>
           <div class="row">
-            <q-input class="col " v-model.number="store.data.toolTOn" label="ON (s)" maxlengtM="3" type="number">
+            <q-input class="col " v-model.number="store.data[store.phase].On_Rpm_Utensile" label="ON (s)" maxlengtM="3"
+              type="number">
               <template v-slot:append>
-                <q-icon v-if="store.data.toolTOn !== 0" name="close" @click="store.data.toolTOn = 0"
-                  class="cursor-pointer" />
+                <q-icon v-if="store.data[store.phase].On_Rpm_Utensile !== 0" name="close"
+                  @click="store.data[store.phase].On_Rpm_Utensile = 0" class="cursor-pointer" />
                 <q-icon name="schedule" />
               </template>
             </q-input>
-            <q-input class="q-pl-md col" v-model.number="store.data.toolTOff" label="OFF (s)" maxlengtM="3" type="number">
+            <q-input class="q-pl-md col" v-model.number="store.data[store.phase].Off_Rpm_Utensile" label="OFF (s)"
+              maxlengtM="3" type="number">
               <template v-slot:append>
-                <q-icon v-if="store.data.toolTOff !== 0" name="close" @click="store.data.toolTOn = 0"
-                  class="cursor-pointer" />
+                <q-icon v-if="store.data[store.phase].Off_Rpm_Utensile !== 0" name="close"
+                  @click="store.data[store.phase].On_Rpm_Utensile = 0" class="cursor-pointer" />
                 <q-icon name="schedule" />
               </template>
             </q-input>
@@ -129,10 +133,11 @@
           </q-avatar>
         </q-item-section>
         <q-item-section>
-          <q-input class="q-pl-md col" v-model.number="store.data.toolTM" label="Mantenimento (s)" maxlengtM="3"
-            type="number">
+          <q-input class="q-pl-md col" v-model.number="store.data[store.phase].Tempo_Rpm_Utensile"
+            label="Mantenimento (s)" maxlengtM="3" type="number">
             <template v-slot:append>
-              <q-icon v-if="store.data.toolTM !== 0" name="close" @click="store.data.toolTM = 0" class="cursor-pointer" />
+              <q-icon v-if="store.data[store.phase].Tempo_Rpm_Utensile !== 0" name="close"
+                @click="store.data[store.phase].Tempo_Rpm_Utensile = 0" class="cursor-pointer" />
               <q-icon name="schedule" />
             </template>
           </q-input>
@@ -145,11 +150,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import { useDataStore } from '../stores/data-store'
-
 const store = useDataStore()
-
 </script>
 
 <style scoped>

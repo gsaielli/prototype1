@@ -1,12 +1,29 @@
 <template>
-  <div class="row items-center no-wrap" style="width: 25vw;">
+  <div class="row items-center wrap" style="width: 25vw; padding-top: 10px;">
     <div class="text-center">
-      {{ title }}<br><span class="lcd">{{ value }}</span><br><span class="um">{{ um }}</span>
+      <span class="lcd">{{ value }}</span><span class="um">{{ um }}</span>
+    </div>
+    <div v-if="store.data[store.phase].Set_Rpm1_Utensile">
+      RPM1 {{ store.data[store.phase].Set_Rpm1_Utensile }} |
+    </div>
+    <div v-if="store.data[store.phase].Set_Rpm2_Utensile">
+      RPM2 {{ store.data[store.phase].Set_Rpm2_Utensile }} |
+    </div>
+    <div v-if="store.data[store.phase].On_Rpm_Utensile">
+      On {{ store.data[store.phase].On_Rpm_Utensile }} |
+    </div>
+    <div v-if="store.data[store.phase].Off_Rpm_Utensile">
+      Off {{ store.data[store.phase].Off_Rpm_Utensile }} |
+    </div>
+    <div v-if="store.data[store.phase].Tempo_Rpm_Utensile">
+      M {{ store.data[store.phase].Tempo_Rpm_Utensile }}
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { useDataStore } from '../stores/data-store'
+const store = useDataStore()
 interface Props {
   title?: string
   value?: string

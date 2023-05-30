@@ -1,0 +1,10 @@
+[
+  {
+    "Set_Rpm1_Utensile": 0,
+    "Set_Rpm2_Utensile": 0,
+    "On_Rpm_Utensile": 0,
+    "Off_Rpm_Utensile": 0,
+    "Tempo_Rpm_Utensile": 0,
+    "tool": "build"
+  }
+]
