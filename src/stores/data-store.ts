@@ -2,8 +2,10 @@ import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import sourceData from 'assets/model.json'
 import { useStorage } from '@vueuse/core'
+import { io } from 'socket.io-client'
 
 export const useDataStore = defineStore('data', () => {
+  const socket = io(`http://${window.location.hostname}:${process.env.PORT}/`)
   const data = useStorage('data', sourceData)
   // watch(data,
   //   (val, old) => {
@@ -31,5 +33,13 @@ export const useDataStore = defineStore('data', () => {
       x.Tempo_Rpm_Utensile > 0
   })
 
-  return { data, phase, valid1 }
+  function start () {
+    socket.emit('start')
+  }
+
+  function stop () {
+    socket.emit('stop')
+  }
+
+  return { data, phase, valid1, start, stop }
 })

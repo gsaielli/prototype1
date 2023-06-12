@@ -9,8 +9,17 @@
 // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js
 
 
-const { configure } = require('quasar/wrappers');
+const { configure } = require('quasar/wrappers')
+const path = require('path')
 
+// This will load from `.env` if it exists, but not override existing `process.env.*` values
+require('dotenv').config({ path: `.env.${process.env.NODE_ENV}` })
+// process.env now contains the terminal variables and the ones from the .env file
+// Precedence:
+//   1. Terminal variables (API_URL=https://api.com quasar build)
+//   2. `.env` file
+// If you want .env file to override the terminal variables,
+// use `require('dotenv').config({ override: true })` instead
 
 module.exports = configure(function (/* ctx */) {
   return {
@@ -30,8 +39,8 @@ module.exports = configure(function (/* ctx */) {
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli-vite/boot-files
     boot: [
-      
-      
+
+
     ],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#css
@@ -56,7 +65,7 @@ module.exports = configure(function (/* ctx */) {
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#build
     build: {
       target: {
-        browser: [ 'es2019', 'edge88', 'firefox78', 'chrome87', 'safari13.1' ],
+        browser: ['es2019', 'edge88', 'firefox78', 'chrome87', 'safari13.1'],
         node: 'node16'
       },
 
@@ -69,7 +78,15 @@ module.exports = configure(function (/* ctx */) {
 
       // publicPath: '/',
       // analyze: true,
-      // env: {},
+      env: {
+        WAIT_TIME_LPRESS_RETRY: process.env.WAIT_TIME_LPRESS_RETRY,
+        PORT: process.env.PORT,
+        CALL_WS: process.env.CALL_WS,
+        WS_HOST: process.env.WS_HOST,
+        WS_PORT: process.env.WS_PORT,
+        WS_PATH: process.env.WS_PATH,
+        MACHINE_ID: process.env.MACHINE_ID,
+      },
       // rawDefine: {}
       // ignorePublicFolder: true,
       // minify: false,
@@ -79,7 +96,7 @@ module.exports = configure(function (/* ctx */) {
       // extendViteConf (viteConf) {},
       // viteVuePluginOptions: {},
 
-      
+
       // vitePlugins: [
       //   [ 'package-name', { ..options.. } ]
       // ]
@@ -128,7 +145,7 @@ module.exports = configure(function (/* ctx */) {
     // https://v2.quasar.dev/quasar-cli-vite/developing-ssr/configuring-ssr
     ssr: {
       // ssrPwaHtmlFilename: 'offline.html', // do NOT use index.html as name!
-                                          // will mess up SSR
+      // will mess up SSR
 
       // extendSSRWebserverConf (esbuildConf) {},
       // extendPackageJson (json) {},
@@ -139,7 +156,7 @@ module.exports = configure(function (/* ctx */) {
       // manualPostHydrationTrigger: true,
 
       prodPort: 3000, // The default port that the production server should use
-                      // (gets superseded if process.env.PORT is specified at runtime)
+      // (gets superseded if process.env.PORT is specified at runtime)
 
       middlewares: [
         'render' // keep this as last one
@@ -209,4 +226,4 @@ module.exports = configure(function (/* ctx */) {
       // extendBexManifestJson (json) {}
     }
   }
-});
+})
