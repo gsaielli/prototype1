@@ -1,4 +1,4 @@
-# Abilitare yarn se bloccato
+# Abilitare yarn se bloccatozz
 ```bash
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 ```
