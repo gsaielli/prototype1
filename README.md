@@ -1,3 +1,8 @@
+# Abilitare yarn se bloccato
+```bash
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+
 # Robo Qbo (prototype1)
 
 by Manitronica SRL
