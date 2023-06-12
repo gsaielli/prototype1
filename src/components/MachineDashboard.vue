@@ -48,12 +48,12 @@
           <q-btn-toggle push rounded glossy toggle-color="purple" :options="[
               { value: 'play', slot: 'one' },
               { value: 'stop', slot: 'two' },
-            ]">
+            ]" model-value="play">
             <template v-slot:one>
               <q-icon name="play_arrow" size="100px" />
             </template>
             <template v-slot:two>
-              <q-icon name="stop" size="100px" />
+              <q-icon name="stop" size="100px" @click="store.end" />
             </template>
           </q-btn-toggle>
         </div>
@@ -64,6 +64,7 @@
 
 <script setup lang="ts">
 // import { Todo, Meta } from './models'
+import { ref } from 'vue'
 import ConfigThermo from './ConfigThermo.vue'
 import ConfigTool from './ConfigTool.vue'
 import ConfigPage from './ConfigPage.vue'
@@ -80,6 +81,8 @@ const store = useDataStore()
 // const props = withDefaults(defineProps<Props>(), {
 //   todos: () => []
 // })
+
+const play = ref('')
 
 function phaseAdv () {
   if (store.valid1) {
