@@ -3,6 +3,13 @@
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 ```
 
+# Isnatllare Quasar
+
+```bash
+yarn global add @quasar/cli
+```
+
+
 # Robo Qbo (prototype1)
 
 by Manitronica SRL
