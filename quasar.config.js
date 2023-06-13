@@ -24,11 +24,11 @@ require('dotenv').config({ path: `.env.${process.env.NODE_ENV}` })
 module.exports = configure(function (/* ctx */) {
   return {
     eslint: {
-      // fix: true,
+      fix: true,
       // include: [],
       // exclude: [],
       // rawOptions: {},
-      warnings: true,
+      warnings: false,
       errors: true
     },
 
