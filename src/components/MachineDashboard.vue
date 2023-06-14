@@ -50,7 +50,7 @@
               { value: 'stop', slot: 'two' },
             ]" model-value="play">
             <template v-slot:one>
-              <q-icon name="play_arrow" size="100px" @click="store.start" />
+              <q-icon name="play_arrow" size="100px" @click="store.test" />
             </template>
             <template v-slot:two>
               <q-icon name="stop" size="100px" @click="store.stop" />

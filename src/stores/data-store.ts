@@ -33,12 +33,16 @@ export const useDataStore = defineStore('data', () => {
       x.Tempo_Rpm_Utensile > 0
   })
 
-  function start() {
+  function start () {
     socket.emit('start')
   }
 
-  function stop() {
+  function stop () {
     socket.emit('stop')
+  }
+
+  function test () {
+    socket.emit('test', data.value[phase.value])
   }
 
   socket.on('data', function (data) {
@@ -46,5 +50,5 @@ export const useDataStore = defineStore('data', () => {
     // const obj = JSON.parse(data)
   })
 
-  return { data, phase, valid1, start, stop }
+  return { data, phase, valid1, start, stop, test }
 })
