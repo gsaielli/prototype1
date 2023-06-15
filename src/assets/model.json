@@ -5,6 +5,7 @@
     "On_Rpm_Utensile": 0,
     "Off_Rpm_Utensile": 0,
     "Tempo_Rpm_Utensile": 0,
-    "tool": "build"
+    "tool": "build",
+    "data95": 0
   }
 ]

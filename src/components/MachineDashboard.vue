@@ -3,7 +3,7 @@
     <div class="q-pa-md q-gutter-md row justify-center">
       <q-btn-dropdown color="primary" dropdown-icon="settings">
         <template v-slot:label>
-          <button-display title="Utensile" um="rpm" value='200'></button-display>
+          <button-display title="Utensile" um="rpm" :value="store.data95"></button-display>
         </template>
         <config-tool />
       </q-btn-dropdown>

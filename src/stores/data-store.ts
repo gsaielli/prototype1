@@ -7,6 +7,7 @@ import { io } from 'socket.io-client'
 export const useDataStore = defineStore('data', () => {
   const socket = io(`http://${window.location.hostname}:${process.env.PORT}/`)
   const data = useStorage('data', sourceData)
+  const data95 = ref(0)
   // watch(data,
   //   (val, old) => {
   //     if (old !== undefined) {
@@ -33,22 +34,23 @@ export const useDataStore = defineStore('data', () => {
       x.Tempo_Rpm_Utensile > 0
   })
 
-  function start () {
+  function start() {
     socket.emit('start')
   }
 
-  function stop () {
+  function stop() {
     socket.emit('stop')
   }
 
-  function test () {
+  function test() {
     socket.emit('test', data.value[phase.value])
   }
 
-  socket.on('data', function (data) {
-    console.log(data)
+  socket.on('data', function (x) {
+    console.log(x)
+    data95.value = x.data[95]
     // const obj = JSON.parse(data)
   })
 
-  return { data, phase, valid1, start, stop, test }
+  return { data, phase, valid1, start, stop, test, data95 }
 })
